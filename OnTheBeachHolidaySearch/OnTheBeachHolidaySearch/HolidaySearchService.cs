@@ -33,7 +33,25 @@ namespace OnTheBeachHolidaySearch
 
         public static List<Hotel> ImportHotels()
         {
-            throw new NotImplementedException();
+            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+            if (path is null) throw new Exception("Unable to determine the executing assembly's directory.");
+
+            var hotelFilePath = Path.Combine(path, "Files\\hotels.json");
+
+            var hotelFileContent = File.ReadAllText(hotelFilePath);
+
+            var hotels = JsonSerializer.Deserialize<List<JsonHotel>>(hotelFileContent);
+
+            return hotels.ConvertAll(h => new Hotel
+            {
+                Id = h.id,
+                Name = h.name,
+                ArrivalDate = DateTime.ParseExact(h.arrival_date, "yyyy-MM-dd", CultureInfo.InvariantCulture),
+                PricePerNight = h.price_per_night,
+                LocalAirports = h.local_airports,
+                Nights = h.nights
+            });
         }
     }
 }
