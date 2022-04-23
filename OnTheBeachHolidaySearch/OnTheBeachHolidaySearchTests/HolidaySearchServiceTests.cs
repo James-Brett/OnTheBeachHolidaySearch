@@ -116,6 +116,7 @@ namespace OnTheBeachHolidaySearchTests
             Assert.NotEmpty(results);
 
             var firstResult = results.First();
+            Assert.Equal(675, firstResult.TotalPrice);
             Assert.Equal(6, firstResult.Flight.Id);
             Assert.Equal(5, firstResult.Hotel.Id);
         }
@@ -128,6 +129,7 @@ namespace OnTheBeachHolidaySearchTests
             Assert.NotEmpty(results);
 
             var firstResult = results.First();
+            Assert.Equal(1175, firstResult.TotalPrice);
             Assert.Equal(7, firstResult.Flight.Id);
             Assert.Equal(6, firstResult.Hotel.Id);
         }
