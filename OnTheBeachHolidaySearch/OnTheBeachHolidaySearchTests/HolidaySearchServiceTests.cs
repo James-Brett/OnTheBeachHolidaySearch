@@ -1,5 +1,6 @@
 using OnTheBeachHolidaySearch;
 using OnTheBeachHolidaySearch.Models;
+using System.Collections.Generic;
 using Xunit;
 
 namespace OnTheBeachHolidaySearchTests
@@ -82,7 +83,7 @@ namespace OnTheBeachHolidaySearchTests
         {
             var search = new HolidaySearch();
             var results = search.Results();
-            Assert.IsType<Result>(results);
+            Assert.IsType<List<Result>>(results);
         }
     }
 }
