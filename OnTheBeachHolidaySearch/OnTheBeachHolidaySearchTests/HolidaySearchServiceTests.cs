@@ -119,5 +119,17 @@ namespace OnTheBeachHolidaySearchTests
             Assert.Equal(6, firstResult.Flight.Id);
             Assert.Equal(5, firstResult.Hotel.Id);
         }
+
+        [Fact]
+        public void SearchService_ReturnsExactResult_3()
+        {
+            var search = new HolidaySearch(Airports.AnyAirport, "LPA", "2022/11/10", 14);
+            var results = search.Results();
+            Assert.NotEmpty(results);
+
+            var firstResult = results.First();
+            Assert.Equal(7, firstResult.Flight.Id);
+            Assert.Equal(6, firstResult.Hotel.Id);
+        }
     }
 }

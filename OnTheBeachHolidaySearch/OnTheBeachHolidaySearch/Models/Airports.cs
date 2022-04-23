@@ -8,5 +8,7 @@ namespace OnTheBeachHolidaySearch.Models
         {
             "LCY", "LHR", "LGW", "LTN", "STN", "SEN"
         };
+
+        public static string[] AnyAirport = Array.Empty<string>(); //using the empty array for 'any airport'
     }
 }
