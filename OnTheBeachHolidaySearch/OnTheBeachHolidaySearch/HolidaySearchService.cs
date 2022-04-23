@@ -21,14 +21,14 @@ namespace OnTheBeachHolidaySearch
             var flights = JsonSerializer.Deserialize<List<JsonFlight>>(flightFileContent);
 
             return flights.ConvertAll(f => new Flight
-            {
-                Id = f.id,
-                Airline = f.airline,
-                From = f.from,
-                To = f.to,
-                Price = f.price,
-                DepartureDate = DateTime.ParseExact(f.departure_date, "yyyy-MM-dd", CultureInfo.InvariantCulture)
-            });
+            (
+                f.id,
+                f.airline,
+                f.from,
+                f.to,
+                f.price,
+                DateTime.ParseExact(f.departure_date, "yyyy-MM-dd", CultureInfo.InvariantCulture)
+            ));
         }
 
         public static List<Hotel> ImportHotels()
@@ -44,14 +44,14 @@ namespace OnTheBeachHolidaySearch
             var hotels = JsonSerializer.Deserialize<List<JsonHotel>>(hotelFileContent);
 
             return hotels.ConvertAll(h => new Hotel
-            {
-                Id = h.id,
-                Name = h.name,
-                ArrivalDate = DateTime.ParseExact(h.arrival_date, "yyyy-MM-dd", CultureInfo.InvariantCulture),
-                PricePerNight = h.price_per_night,
-                LocalAirports = h.local_airports,
-                Nights = h.nights
-            });
+            (
+                h.id,
+                h.name,
+                DateTime.ParseExact(h.arrival_date, "yyyy-MM-dd", CultureInfo.InvariantCulture),
+                h.price_per_night,
+                h.local_airports,
+                h.nights
+            ));
         }
 
         public static List<Result> Results(this HolidaySearch search)
@@ -79,11 +79,11 @@ namespace OnTheBeachHolidaySearch
                 foreach (var flight in matchingFlights)
                 {
                     results.Add(new Result
-                    {
-                        Flight = flight,
-                        Hotel = hotel,
-                        TotalPrice = flight.Price + hotel.PricePerNight * hotel.Nights
-                    });
+                    (
+                        flight.Price + hotel.PricePerNight * hotel.Nights,
+                        flight,
+                        hotel
+                    ));
                 }
             }
 
