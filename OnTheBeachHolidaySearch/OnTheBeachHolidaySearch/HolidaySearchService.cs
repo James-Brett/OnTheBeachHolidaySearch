@@ -10,13 +10,7 @@ namespace OnTheBeachHolidaySearch
     {
         public static List<Flight> ImportFlights()
         {
-            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-            if (path is null) throw new Exception("Unable to determine the executing assembly's directory.");
-
-            var flightFilePath = Path.Combine(path, "Files\\flights.json");
-
-            var flightFileContent = File.ReadAllText(flightFilePath);
+            var flightFileContent = ImportTextFromFile("flights.json");
 
             var flights = JsonSerializer.Deserialize<List<JsonFlight>>(flightFileContent);
 
@@ -33,13 +27,7 @@ namespace OnTheBeachHolidaySearch
 
         public static List<Hotel> ImportHotels()
         {
-            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-            if (path is null) throw new Exception("Unable to determine the executing assembly's directory.");
-
-            var hotelFilePath = Path.Combine(path, "Files\\hotels.json");
-
-            var hotelFileContent = File.ReadAllText(hotelFilePath);
+            var hotelFileContent = ImportTextFromFile("hotels.json");
 
             var hotels = JsonSerializer.Deserialize<List<JsonHotel>>(hotelFileContent);
 
@@ -52,6 +40,17 @@ namespace OnTheBeachHolidaySearch
                 h.local_airports,
                 h.nights
             ));
+        }
+
+        private static string ImportTextFromFile(string filename)
+        {
+            var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+            if (path is null) throw new Exception("Unable to determine the executing assembly's directory.");
+
+            var filePath = Path.Combine(path, $"Files\\{filename}");
+
+            return File.ReadAllText(filePath);
         }
 
         public static List<Result> Results(this HolidaySearch search)
