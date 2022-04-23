@@ -63,19 +63,19 @@ namespace OnTheBeachHolidaySearch
             var matchingHotels = hotels
                 .Where(h =>
                     search.DepartureDate == h.ArrivalDate &&
-                    search.Duration == h.Nights
+                    search.Duration == h.Nights &&
+                    h.LocalAirports.Contains(search.TravelingTo)
+                );
+
+            var matchingFlights = flights
+                .Where(f =>
+                    search.DepartingFrom == f.From &&
+                    search.TravelingTo == f.To &&
+                    search.DepartureDate == f.DepartureDate
                 );
 
             foreach (var hotel in matchingHotels)
             {
-                var matchingFlights = flights
-                .Where(f =>
-                    search.DepartingFrom == f.From &&
-                    search.TravelingTo == f.To &&
-                    search.DepartureDate == f.DepartureDate &&
-                    hotel.LocalAirports.Contains(f.To)
-                );
-
                 foreach (var flight in matchingFlights)
                 {
                     results.Add(new Result

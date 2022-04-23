@@ -1,6 +1,7 @@
 using OnTheBeachHolidaySearch;
 using OnTheBeachHolidaySearch.Models;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace OnTheBeachHolidaySearchTests
@@ -81,9 +82,30 @@ namespace OnTheBeachHolidaySearchTests
         [Fact]
         public void SearchService_ReturnsResult()
         {
-            var search = new HolidaySearch();
+            var search = new HolidaySearch("MAN", "AGP", "2023/07/01", 7);
             var results = search.Results();
             Assert.IsType<List<Result>>(results);
+        }
+
+        [Fact]
+        public void SearchService_ReturnsPopulatedResult()
+        {
+            var search = new HolidaySearch("MAN", "AGP", "2023/07/01", 7);
+            var results = search.Results();
+            Assert.NotEmpty(results);
+        }
+
+        [Fact]
+        public void SearchService_ReturnsExactResult_1()
+        {
+            var search = new HolidaySearch("MAN", "AGP", "2023/07/01", 7);
+            var results = search.Results();
+            Assert.NotEmpty(results);
+
+            var firstResult = results.First();
+            Assert.Equal(826, firstResult.TotalPrice);
+            Assert.Equal(2, firstResult.Flight.Id);
+            Assert.Equal(9, firstResult.Hotel.Id);
         }
     }
 }
