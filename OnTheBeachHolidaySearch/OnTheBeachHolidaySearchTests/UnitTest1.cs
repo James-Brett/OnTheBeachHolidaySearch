@@ -1,6 +1,6 @@
 using Xunit;
 
-namespace OnTheBeachHolidaySeachTests
+namespace OnTheBeachHolidaySearchTests
 {
     public class UnitTest1
     {
