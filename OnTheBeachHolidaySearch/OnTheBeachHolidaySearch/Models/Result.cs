@@ -1,4 +1,4 @@
-﻿namespace HolidaySearch.Models
+﻿namespace OnTheBeachHolidaySearch.Models
 {
     public class Result
     {

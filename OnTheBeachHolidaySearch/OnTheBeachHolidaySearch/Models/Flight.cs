@@ -1,6 +1,6 @@
 ﻿using OnTheBeachHolidaySearch.Models.Json;
 
-namespace HolidaySearch.Models
+namespace OnTheBeachHolidaySearch.Models
 {
     public class Flight
     {

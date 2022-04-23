@@ -1,5 +1,5 @@
-﻿using HolidaySearch.Models;
-using OnTheBeachHolidaySearch.Models.Json;
+﻿using OnTheBeachHolidaySearch.Models.Json;
+using OnTheBeachHolidaySearch.Models;
 using System.Globalization;
 using System.Reflection;
 using System.Text.Json;
@@ -52,6 +52,11 @@ namespace OnTheBeachHolidaySearch
                 LocalAirports = h.local_airports,
                 Nights = h.nights
             });
+        }
+
+        public static List<Result> Results(this HolidaySearch search)
+        {
+            throw new NotImplementedException();
         }
     }
 }
