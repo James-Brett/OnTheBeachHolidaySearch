@@ -24,5 +24,20 @@ namespace OnTheBeachHolidaySearchTests
             Assert.Equal(470, flight.Price);
             Assert.Equal("2023-07-01", $"{flight.DepartureDate:yyyy-MM-dd}");
         }
+
+        [Fact]
+        public void ImportFlights_AssignsAllValuesProperly()
+        {
+            var flights = HolidaySearchService.ImportFlights();
+            foreach (var flight in flights)
+            {
+                Assert.NotEqual(0, flight.Id);
+                Assert.False(string.IsNullOrWhiteSpace(flight.Airline));
+                Assert.False(string.IsNullOrWhiteSpace(flight.From));
+                Assert.False(string.IsNullOrWhiteSpace(flight.To));
+                Assert.NotEqual(0, flight.Price);
+                Assert.NotEqual(default, flight.DepartureDate);
+            }
+        }
     }
 }
