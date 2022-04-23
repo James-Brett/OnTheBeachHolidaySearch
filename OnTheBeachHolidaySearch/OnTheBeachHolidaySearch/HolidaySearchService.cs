@@ -69,7 +69,7 @@ namespace OnTheBeachHolidaySearch
 
             var matchingFlights = flights
                 .Where(f =>
-                    search.DepartingFrom == f.From &&
+                    search.DepartingFrom.Contains(f.From) &&
                     search.TravelingTo == f.To &&
                     search.DepartureDate == f.DepartureDate
                 );

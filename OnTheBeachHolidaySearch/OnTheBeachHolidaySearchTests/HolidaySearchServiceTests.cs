@@ -107,5 +107,17 @@ namespace OnTheBeachHolidaySearchTests
             Assert.Equal(2, firstResult.Flight.Id);
             Assert.Equal(9, firstResult.Hotel.Id);
         }
+
+        [Fact]
+        public void SearchService_ReturnsExactResult_2()
+        {
+            var search = new HolidaySearch(Airports.AnyLondonAirport, "PMI", "2023/06/15", 10);
+            var results = search.Results();
+            Assert.NotEmpty(results);
+
+            var firstResult = results.First();
+            Assert.Equal(6, firstResult.Flight.Id);
+            Assert.Equal(5, firstResult.Hotel.Id);
+        }
     }
 }
