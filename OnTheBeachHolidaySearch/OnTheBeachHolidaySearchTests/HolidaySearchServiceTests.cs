@@ -1,4 +1,5 @@
 using OnTheBeachHolidaySearch;
+using OnTheBeachHolidaySearch.Models;
 using Xunit;
 
 namespace OnTheBeachHolidaySearchTests
@@ -74,6 +75,14 @@ namespace OnTheBeachHolidaySearchTests
                 Assert.NotEqual(0, hotel.PricePerNight);
                 Assert.NotEqual(default, hotel.ArrivalDate);
             }
+        }
+
+        [Fact]
+        public void SearchService_ReturnsResult()
+        {
+            var search = new HolidaySearch();
+            var results = search.Results();
+            Assert.IsType<Result>(results);
         }
     }
 }
