@@ -2,8 +2,19 @@
 {
     public class Result
     {
-        public decimal TotalPrice { get; set; }
-        public Flight Flight { get; set; }
-        public Hotel Hotel { get; set; }
+        public Result(
+            decimal totalPrice,
+            Flight flight,
+            Hotel hotel
+            )
+        {
+            TotalPrice = totalPrice;
+            Flight = flight;
+            Hotel = hotel;
+        }
+
+        public decimal TotalPrice { get; }
+        public Flight Flight { get; }
+        public Hotel Hotel { get; }
     }
 }

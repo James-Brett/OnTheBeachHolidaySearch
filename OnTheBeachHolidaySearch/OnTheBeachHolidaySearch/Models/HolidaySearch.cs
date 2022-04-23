@@ -4,7 +4,12 @@ namespace OnTheBeachHolidaySearch.Models
 {
     public class HolidaySearch
     {
-        public HolidaySearch(string departingFrom, string travellingTo, string departureDate, int duration)
+        public HolidaySearch(
+            string departingFrom,
+            string travellingTo,
+            string departureDate,
+            int duration
+            )
         {
             DepartingFrom = new string[] { departingFrom };
             TravelingTo = travellingTo;
@@ -12,7 +17,12 @@ namespace OnTheBeachHolidaySearch.Models
             Duration = duration;
         }
 
-        public HolidaySearch(string[] departingFrom, string travellingTo, string departureDate, int duration)
+        public HolidaySearch(
+            string[] departingFrom,
+            string travellingTo,
+            string departureDate,
+            int duration
+            )
         {
             DepartingFrom = departingFrom;
             TravelingTo = travellingTo;

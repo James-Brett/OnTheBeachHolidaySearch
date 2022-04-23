@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace OnTheBeachHolidaySearch.Models
+﻿namespace OnTheBeachHolidaySearch.Models
 {
     public static class Airports
     {

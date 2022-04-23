@@ -1,14 +1,29 @@
-﻿using OnTheBeachHolidaySearch.Models.Json;
-
-namespace OnTheBeachHolidaySearch.Models
+﻿namespace OnTheBeachHolidaySearch.Models
 {
     public class Flight
     {
-        public int Id { get; set; }
-        public string Airline { get; set; }
-        public string From { get; set; }
-        public string To { get; set; }
-        public decimal Price { get; set; }
-        public DateTime DepartureDate { get; set; }
+        public Flight(
+            int id,
+            string airline,
+            string from,
+            string to,
+            decimal price,
+            DateTime depatureDate
+            )
+        {
+            Id = id;
+            Airline = airline;
+            From = from;
+            To = to;
+            Price = price;
+            DepartureDate = depatureDate;
+        }
+
+        public int Id { get; }
+        public string Airline { get; }
+        public string From { get; }
+        public string To { get; }
+        public decimal Price { get; }
+        public DateTime DepartureDate { get; }
     }
 }
