@@ -56,7 +56,40 @@ namespace OnTheBeachHolidaySearch
 
         public static List<Result> Results(this HolidaySearch search)
         {
-            throw new NotImplementedException();
+            var flights = ImportFlights();
+            var hotels = ImportHotels();
+            var results = new List<Result>();
+
+            var matchingHotels = hotels
+                .Where(h =>
+                    search.DepartureDate == h.ArrivalDate &&
+                    search.Duration == h.Nights
+                );
+
+            foreach (var hotel in matchingHotels)
+            {
+                var matchingFlights = flights
+                .Where(f =>
+                    search.DepartingFrom == f.From &&
+                    search.TravelingTo == f.To &&
+                    search.DepartureDate == f.DepartureDate &&
+                    hotel.LocalAirports.Contains(f.To)
+                );
+
+                foreach (var flight in matchingFlights)
+                {
+                    results.Add(new Result
+                    {
+                        Flight = flight,
+                        Hotel = hotel,
+                        TotalPrice = flight.Price + hotel.PricePerNight * hotel.Nights
+                    });
+                }
+            }
+
+            return results
+                .OrderBy(f => f.TotalPrice)
+                .ToList();
         }
     }
 }
