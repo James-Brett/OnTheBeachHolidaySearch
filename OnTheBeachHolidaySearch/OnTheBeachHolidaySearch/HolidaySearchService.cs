@@ -1,4 +1,6 @@
 ﻿using HolidaySearch.Models;
+using OnTheBeachHolidaySearch.Models.Json;
+using System.Globalization;
 using System.Reflection;
 using System.Text.Json;
 
@@ -16,9 +18,17 @@ namespace OnTheBeachHolidaySearch
 
             var flightFileContent = File.ReadAllText(flightFilePath);
 
-            var flights = JsonSerializer.Deserialize<List<Flight>>(flightFileContent);
+            var flights = JsonSerializer.Deserialize<List<JsonFlight>>(flightFileContent);
 
-            return flights;
+            return flights.ConvertAll(f => new Flight
+            {
+                Id = f.id,
+                Airline = f.airline,
+                From = f.from,
+                To = f.to,
+                Price = f.price,
+                DepartureDate = DateTime.ParseExact(f.departure_date, "yyyy-MM-dd", CultureInfo.InvariantCulture)
+            });
         }
     }
 }

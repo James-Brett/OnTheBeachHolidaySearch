@@ -22,7 +22,7 @@ namespace OnTheBeachHolidaySearchTests
             Assert.Equal("MAN", flight.From);
             Assert.Equal("TFS", flight.To);
             Assert.Equal(470, flight.Price);
-            Assert.Equal("2023-07-01", $"{flight.DepartureDate:yyyyy-MM-dd}");
+            Assert.Equal("2023-07-01", $"{flight.DepartureDate:yyyy-MM-dd}");
         }
     }
 }
