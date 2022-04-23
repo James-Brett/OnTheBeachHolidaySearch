@@ -30,5 +30,10 @@ namespace OnTheBeachHolidaySearch
                 DepartureDate = DateTime.ParseExact(f.departure_date, "yyyy-MM-dd", CultureInfo.InvariantCulture)
             });
         }
+
+        public static List<Hotel> ImportHotels()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

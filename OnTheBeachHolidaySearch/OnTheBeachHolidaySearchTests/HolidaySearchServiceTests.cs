@@ -39,5 +39,41 @@ namespace OnTheBeachHolidaySearchTests
                 Assert.NotEqual(default, flight.DepartureDate);
             }
         }
+
+        [Fact]
+        public void ImportHotels_ReturnsPopulatedList()
+        {
+            var hotels = HolidaySearchService.ImportHotels();
+            Assert.NotEmpty(hotels);
+        }
+
+        [Fact]
+        public void ImportHotels_HasCorrectValueForItem()
+        {
+            var hotels = HolidaySearchService.ImportHotels();
+            var hotel = hotels[0];
+            Assert.Equal(1, hotel.Id);
+            Assert.Equal("Iberostar Grand Portals Nous", hotel.Name);
+            Assert.Equal("2022-11-05", $"{hotel.ArrivalDate:yyyy-MM-dd}");
+            Assert.Equal(100, hotel.PricePerNight);
+            Assert.Single(hotel.LocalAirports);
+            Assert.Equal("TFS", hotel.LocalAirports[0]);
+            Assert.Equal(7, hotel.Nights);
+        }
+
+        [Fact]
+        public void ImportHotels_AssignsAllValuesProperly()
+        {
+            var hotels = HolidaySearchService.ImportHotels();
+            foreach (var hotel in hotels)
+            {
+                Assert.NotEqual(0, hotel.Id);
+                Assert.NotEqual(0, hotel.Nights);
+                Assert.False(string.IsNullOrWhiteSpace(hotel.Name));
+                Assert.Single(hotel.LocalAirports);
+                Assert.NotEqual(0, hotel.PricePerNight);
+                Assert.NotEqual(default, hotel.ArrivalDate);
+            }
+        }
     }
 }
